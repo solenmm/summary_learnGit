@@ -1,9 +1,15 @@
+‘缺省’表示 系统默认的状态
+PS：图片、视频、Word文档这些都是二进制文件，不适用Git版本控制系统
+
+
 PS：Git创建仓库的目录，目录名(包括其父目录)不要包含中文，否则会出现莫名其妙的问题！
 
 如果有多个人协作开发，那么每个人各自从远程克隆一份就可以了。
 你也许还注意到，GitHub给出的地址不止一个，还可以用https://github.com/michaelliao/gitskills.git这样的地址。实际上，Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议。
 使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https。
 Git支持多种协议，包括https，但ssh协议速度最快。
+
+创建SSH-key：git bash下，ssh-keygen -t rsa -C "我的github账号绑定的邮箱"，一直回车，在bash下生成的key，接着登录web github，右上角头像下的Settings-SSH and GPG keys-New SSH key，Title任意，Key文本框里粘贴bash下的文件内容，最后点击Add SSH key，生成SSH key！
 
 $ git log 之后 Ctrl C退出
 
