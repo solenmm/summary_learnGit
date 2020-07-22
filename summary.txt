@@ -37,3 +37,5 @@ git diff文件名，可以查看具体修改了什么内容，但是汉字都是乱码。
 
 2、分支管理-分支管理策略
 合并分支 git merge --no-ff -m "commit msg" 分支名，表示禁用Fast forward模式而使用普通模式合并，合并后可以看出合并的历史记录，而使用Fast forward模式就看不出来！
+
+test again！
