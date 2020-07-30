@@ -1,40 +1,44 @@
-��ȱʡ����ʾ ϵͳĬ�ϵ�״̬
+‘缺省’表示 系统默认的状态
 
-PS��ͼƬ����Ƶ��Word�ĵ���Щ���Ƕ������ļ���������Git�汾����ϵͳ
+PS：图片、视频、Word文档这些都是二进制文件，不适用Git版本控制系统
 
-git bash�µ���������ʾ�����������������ʲô·���£�ʲô�ļ�Ŀ¼�£�ʲô��֧�£������ύ��
+git bash下的命令行提示符，会告诉你你正在什么路径下，什么文件目录下，什么分支下，操作提交！
 
-PS��Git�����ֿ��Ŀ¼��Ŀ¼��(�����丸Ŀ¼)��Ҫ�������ģ���������Ī����������⣡
+PS：Git创建仓库的目录，目录名(包括其父目录)不要包含中文，否则会出现莫名其妙的问题！
 
-����ж����Э����������ôÿ���˸��Դ�Զ�̿�¡һ�ݾͿ����ˡ�
-��Ҳ����ע�⵽��GitHub�����ĵ�ַ��ֹһ������������https://github.com/michaelliao/gitskills.git�����ĵ�ַ��ʵ���ϣ�Git֧�ֶ���Э�飬Ĭ�ϵ�git://ʹ��ssh����Ҳ����ʹ��https������Э�顣
-ʹ��https�����ٶ������⣬���и������鷳��ÿ�����Ͷ�����������������ĳЩֻ����http�˿ڵĹ�˾�ڲ����޷�ʹ��sshЭ���ֻ����https��
-Git֧�ֶ���Э�飬����https����sshЭ���ٶ���졣
+如果有多个人协作开发，那么每个人各自从远程克隆一份就可以了。
+你也许还注意到，GitHub给出的地址不止一个，还可以用https://github.com/michaelliao/gitskills.git这样的地址。实际上，Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议。
+使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https。
+Git支持多种协议，包括https，但ssh协议速度最快。
 
-����SSH-key��git bash�£�ssh-keygen -t rsa -C "�ҵ�github�˺Ű󶨵�����"��һֱ�س�����bash�����ɵ�key�����ŵ�¼web github�����Ͻ�ͷ���µ�Settings-SSH and GPG keys-New SSH key��Title���⣬Key�ı�����ճ��bash�µ��ļ����ݣ������Add SSH key������SSH key��
+创建SSH-key：git bash下，ssh-keygen -t rsa -C "我的github账号绑定的邮箱"，一直回车，在bash下生成的key，接着登录web github，右上角头像下的Settings-SSH and GPG keys-New SSH key，Title任意，Key文本框里粘贴bash下的文件内容，最后点击Add SSH key，生成SSH key！
 
-$ git log ֮�� Ctrl C�˳�
+$ git log 之后 Ctrl C退出
 
-��Git�޷��Զ��ϲ���֧ʱ���ͱ������Ƚ����ͻ�������ͻ֮�����ύ���ϲ�����ɡ�����֮�������ͻ���ǰ�Git�ϲ�ʧ�ܵ��ļ��ֶ��༭Ϊ����ϣ�������ݣ����ύ��
+当Git无法自动合并分支时，就必须首先解决冲突。解决冲突之后，再提交，合并才完成。简言之，解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。
 
 ---20.07.21---
-���ع�����ɾ���ļ���rm �ļ��������add��commit�ļ����汾���ˣ�ȷʵ����ɾ�����ļ���git rm �ļ����������ļ��ʹӰ汾��ɾ���ˣ������ָ��ļ���git checkout -- �ļ��������ǻָ����ļ������һ���ύ���޸ĵ��ļ����ݣ�PS������û�б����ӵ��汾����ļ���ɾ���ˣ����޷��ָ��ģ�
+本地工作区删除文件，rm 文件名。如果add且commit文件到版本库了，确实打算删除此文件则git rm 文件名，现在文件就从版本库删除了，如果想恢复文件，git checkout -- 文件名。但是恢复的文件是最近一次提交后修改的文件内容！PS：从来没有被添加到版本库的文件被删除了，是无法恢复的！
 
-Q���ļ�ֻ����add��û��commit��Ȼ���� git reset --hard commitID���һ����Գ�����
+Q：文件只做了add，没有commit，然后我 git reset --hard commitID，我还可以撤销吗？
 
-HEAD��ʾ��ǰ���°汾��
-git diff�ļ��������Բ鿴�����޸���ʲô���ݣ����Ǻ��ֶ������롣
+HEAD表示当前最新版本。
+git diff文件名，可以查看具体修改了什么内容，但是汉字都是乱码。
 
-1�������Լ��Ĺ�����֧��git branch ��֧��
-2��Ȼ���л����Լ��Ĺ�����֧��git switch ��֧��
-3���鿴��ǰ���ĸ�������֧�ϣ�git branch����ǰ��֧ǰ����עһ��*��
-4���ϲ�ָ���Ĺ�����֧����ǰ��֧�ϣ�git merge ָ���ķ�֧�ķ�֧��
-5��ɾ��ָ���ķ�֧��git branch -d ָ���ķ�֧�ķ�֧��
-�����git branch���鿴��ǰ���ĸ�������֧��
+1、创建自己的工作分支，git branch 分支名
+2、然后切换到自己的工作分支，git switch 分支名
+3、查看当前在哪个工作分支上，git branch，当前分支前面会标注一个*号
+4、合并指定的工作分支到当前分支上，git merge 指定的分支的分支名
+5、删除指定的分支，git branch -d 指定的分支的分支名
+最后再git branch，查看当前在哪个工作分支上
 
 ---20.07.22---
-1����֧����-�����ͻ
-�����ͻ���ǰ�Git�ϲ�ʧ�ܵ��ļ��ֶ��༭Ϊ����ϣ�������ݣ����ύ��
+1、分支管理-解决冲突
+解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。
 
-2����֧����-��֧��������
-�ϲ���֧ git merge --no-ff -m "commit msg" ��֧������ʾ����Fast forwardģʽ��ʹ����ͨģʽ�ϲ����ϲ�����Կ����ϲ�����ʷ��¼����ʹ��Fast forwardģʽ�Ϳ���������
+2、分支管理-分支管理策略
+合并分支 git merge --no-ff -m "commit msg" 分支名，表示禁用Fast forward模式而使用普通模式合并，合并后可以看出合并的历史记录，而使用Fast forward模式就看不出来！
+
+---20.07.30---
+git本地添加、修改->git add提交至缓存区->git commit -m 'msg'提交至本地版本库->git push -u origin master提交至远程仓库
+->若干时间后，git pull origin master将远程仓库的文件和本地仓库同步->git本地添加、修改->git add提交至缓存区->...（循环往复！）
