@@ -43,4 +43,4 @@ git diff文件名，可以查看具体修改了什么内容，但是汉字都是
 git本地添加、修改->git add提交至缓存区->git commit -m 'msg'提交至本地版本库->git push -u origin master提交至远程仓库
 ->若干时间后，git pull origin master将远程仓库的文件和本地仓库同步->git本地添加、修改->git add提交至缓存区->...（循环往复！）
 
-git体验不错！
+git本地删除指定文件，如果该文件已经提交到本地仓库，那就必须再git rm 指定文件名，否则从远程仓库git pull同步本地仓库时，会报一些错误但又不影响操作的错误！
